@@ -1,4 +1,5 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
+const { promisify } = require('util')
 require('dotenv').config()
 
 const connection = mysql.createConnection({
@@ -9,12 +10,8 @@ const connection = mysql.createConnection({
   port: process.env.DB_PORT
 })
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to database:', err)
-    return
-  }
-  console.log('Connected to database!')
-})
+const queryAsync = promisify(connection.query).bind(connection)
 
-module.exports = connection
+module.exports = {
+  queryAsync
+}

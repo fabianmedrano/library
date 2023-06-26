@@ -1,15 +1,14 @@
 const express = require('express')
+
 const router = express.Router()
+
 // const db = require('../db/db')
-const bookController = require('./controllers/bookController')
+const BookController = require('../controllers/bookController')
+const bookControllerInstance = new BookController() // Crear una instancia de BookController
 
-express.set('view engine', 'ejs')
-express.set('views', './views')
-
-// Ruta para el inicio de sesión
-// Define las rutas y los controladores correspondientes
-router.get('/', bookController.getIndexPage)
-router.get('/books', bookController.getBooksPage)
-router.get('/books/:id', bookController.getBookDetails)
+// Rutas para los libros
+router.get('/', bookControllerInstance.getIndexPage.bind(bookControllerInstance))
+router.get('/books', bookControllerInstance.getBooksPage.bind(bookControllerInstance))
+router.get('/books/:id', bookControllerInstance.getBookDetails.bind(bookControllerInstance))
 
 module.exports = router

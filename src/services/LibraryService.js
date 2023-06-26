@@ -1,3 +1,4 @@
+const Book = require('../models/Book')
 class LibraryService {
   constructor (bookRepository, dvdRepository) {
     this.bookRepository = bookRepository
@@ -22,6 +23,9 @@ class LibraryService {
     return this.bookRepository.findBookById(bookId)
   }
 
+  getAllBooks () {
+    return this.bookRepository.getAllBooks()
+  }
   // Otros métodos relacionados con la gestión de la biblioteca
 }
 

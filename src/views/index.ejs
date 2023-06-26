@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Librería</title>
 </head>
+
 <body>
   <h1>Bienvenido a la librería</h1>
   <ul>
-    <% books.forEach((book) => { %>
-      <li><%= book.title %> por <%= book.author %></li>
-    <% }); %>
+    <% books.forEach((book)=> { %>
+      <li>
+
+        <a href="/books/ <%= book.id %>">
+          <%= book.title %> por <%= book.author %>
+        </a>
+      </li>
+      <% }); %>
   </ul>
 </body>
+
 </html>
